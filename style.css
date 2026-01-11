@@ -1,0 +1,338 @@
+/* ================= ROOT COLORS ================= */
+:root {
+  --bg-main: #050b14;
+  --bg-card: #071426;
+  --bg-card-soft: #081a2d;
+
+  --border-main: rgba(255,255,255,0.08);
+  --border-soft: rgba(255,255,255,0.05);
+
+  --text-main: #ffffff;
+  --text-muted: #9ca3af;
+
+  --primary: #6bdcff;
+  --green: #22c55e;
+  --red: #ef4444;
+
+  --orange: #f59e0b;
+  --blue: #38bdf8;
+  --food: #22c55e;
+}
+
+/* ================= GLOBAL ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #040812, #050b14);
+  color: var(--text-main);
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 32px;
+  border-bottom: 1px solid var(--border-soft);
+  background: rgba(5,11,20,0.9);
+  backdrop-filter: blur(6px);
+}
+
+.logo {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* ================= LAYOUT ================= */
+.container {
+  padding: 32px;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+.header-row h1 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+  background: linear-gradient(180deg, #7ddfff, #5fcff5);
+  color: #00131f;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.btn:hover {
+  filter: brightness(1.05);
+}
+
+.full {
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* ================= CARDS ================= */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.card {
+  background: radial-gradient(
+    circle at top,
+    #050b14,
+    var(--bg-card)
+  );
+  border: 1px solid var(--border-main);
+  padding: 22px;
+  border-radius: 14px;
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.card h2 {
+  margin-top: 10px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.green { color: var(--green); }
+.red { color: var(--red); }
+
+/* ================= CHARTS ================= */
+.charts {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 22px;
+  margin-top: 32px;
+}
+
+.chart-box {
+  background: radial-gradient(
+    circle at top,
+   #050b14,
+    var(--bg-card)
+  );
+  border: 1px solid var(--border-main);
+  padding: 24px;
+  border-radius: 16px;
+}
+
+.chart-box h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.chart-box p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+/* ================= TABLE ================= */
+.table-box {
+  margin-top: 34px;
+  background: radial-gradient(
+    circle at top,
+    #050b14,
+    var(--bg-card)
+  );
+  border: 1px solid var(--border-main);
+  padding: 24px;
+  border-radius: 16px;
+}
+
+.table-box h3 {
+  font-size: 20px;
+}
+
+.table-box p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+table {
+  width: 100%;
+  margin-top: 18px;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+th, td {
+  padding: 14px 6px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.right {
+  text-align: right;
+}
+
+/* ================= MODAL ================= */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(3,7,14,0.85);
+  backdrop-filter: blur(8px);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-box {
+  background: radial-gradient(
+    circle at top,
+    #050b14,
+    var(--bg-card)
+  );
+  padding: 26px;
+  width: 380px;
+  border-radius: 16px;
+  border: 1px solid var(--border-main);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-header h3 {
+  font-size: 18px;
+}
+
+.modal-header span {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+/* ================= INPUTS ================= */
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  background: #050b14;
+  border: 1px solid var(--border-soft);
+  color: var(--text-main);
+  border-radius: 8px;
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+.radio {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 8px;
+}
+.modal-subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.modal-box label {
+  display: block;
+  margin-top: 14px;
+  font-size: 14px;
+  color: #e5e7eb;
+}
+
+.modern-radio {
+  display: flex;
+  gap: 26px;
+  margin: 14px 0 6px;
+}
+
+.modern-radio label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modern-radio input {
+  display: none;
+}
+
+.modern-radio span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  display: inline-block;
+  position: relative;
+}
+
+.modern-radio input:checked + span::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+select option[disabled] {
+  color: #9ca3af;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.icon.green {
+  color: #22c55e;
+}
+
+.icon.red {
+  color: #ef4444;
+}
+
+.icon.neutral {
+  color: #9ca3af;
+}
+
+.subtext {
+  color: #9ca3af;
+  font-size: 13px;
+  margin-top: 6px;
+}

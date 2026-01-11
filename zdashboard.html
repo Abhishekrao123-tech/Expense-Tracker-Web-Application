@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TrackSmart Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- 🔐 AUTH CHECK -->
+    <script type="module">
+        import { auth } from "./firebase.js";
+        import { onAuthStateChanged } from
+            "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        onAuthStateChanged(auth, user => {
+            if (!user) {
+                window.location.href = "login.html";
+            } else {
+                // 🔑 Save UID globally
+                window.currentUserId = user.uid;
+            }
+        });
+    </script>
+
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">💳 TrackSmart</div>
+        <button id="logoutBtn" class="btn">Logout</button>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+
+        <div class="header-row">
+            <h1>Dashboard</h1>
+            <button class="btn" id="openModal">➕ Add Transaction</button>
+        </div>
+
+        <!-- CARDS -->
+        <section class="cards">
+            <div class="card">
+                <div class="card-header">
+                    <span>Total Balance</span>
+                    <i class="fa-solid fa-dollar-sign icon neutral"></i>
+                </div>
+                <h2 id="balance">$0.00</h2>
+                <p class="subtext">Current available balance</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span>Total Income</span>
+                    <i class="fa-solid fa-arrow-trend-up icon green"></i>
+                </div>
+                <h2 id="income" class="green">$0.00</h2>
+                <p class="subtext">Total income received</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span>Total Expenses</span>
+                    <i class="fa-solid fa-arrow-trend-down icon red"></i>
+                </div>
+                <h2 id="expense" class="red">$0.00</h2>
+                <p class="subtext">Total spending</p>
+            </div>
+        </section>
+
+        <!-- CHARTS -->
+        <section class="charts">
+            <div class="chart-box">
+                <h3>Monthly Spending</h3>
+                <canvas id="barChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>Spending by Category</h3>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </section>
+
+        <!-- TABLE -->
+        <section class="table-box">
+            <h3>Recent Transactions</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th class="right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions"></tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Add Transaction</h3>
+                <span id="closeModal">✕</span>
+            </div>
+
+            <p class="modal-subtitle">
+                Add a new income or expense to your tracker.
+            </p>
+
+            <div class="radio modern-radio">
+                <label>
+                    <input type="radio" name="type" value="expense" checked>
+                    <span></span> Expense
+                </label>
+                <label>
+                    <input type="radio" name="type" value="income">
+                    <span></span> Income
+                </label>
+            </div>
+
+            <label>Description</label>
+            <input id="desc" placeholder="e.g., Coffee with friends">
+
+            <label>Amount</label>
+            <input id="amount" type="number" placeholder="0">
+
+            <label>Category</label>
+            <select id="category">
+                <option selected disabled>Select a category</option>
+            </select>
+
+            <button class="btn full" id="addTransaction">Add Transaction</button>
+        </div>
+    </div>
+
+    <!-- LOGOUT -->
+    <script type="module">
+        import { auth } from "./firebase.js";
+        import { signOut } from
+            "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        document.getElementById("logoutBtn").onclick = () => {
+            signOut(auth).then(() => window.location.href = "login.html");
+        };
+    </script>
+
+    <!-- SCRIPTS (ORDER MATTERS) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

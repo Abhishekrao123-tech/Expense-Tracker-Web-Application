@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign Up</title>
+
+    <style>
+        /* Reset */
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #0a1a33, #0d2b5a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .signup-box {
+            background-color: #102a56;
+            padding: 30px 35px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .signup-box h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
+
+        .signup-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .signup-box input::placeholder {
+            color: #666;
+        }
+
+        .signup-box button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background-color: #1e90ff;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .signup-box button:hover {
+            background-color: #1873cc;
+        }
+
+        .signup-box p {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+        }
+
+        .signup-box a {
+            color: #66b2ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-box a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-box">
+        <h2>Create Account</h2>
+
+        <input id="email" placeholder="Email">
+        <input id="password" type="password" placeholder="Password">
+        <button onclick="signup()">Sign Up</button>
+
+        <p>Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+    </div>
+
+    <script type="module">
+        import { auth } from "./firebase.js";
+        import { createUserWithEmailAndPassword } from
+            "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        window.signup = function () {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(() => window.location.href = "dashboard.html")
+                .catch(err => alert(err.message));
+        };
+    </script>
+
+</body>
+
+</html>
